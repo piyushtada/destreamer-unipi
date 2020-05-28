@@ -9,24 +9,7 @@ yourMagicPassword
 You can find the original work [here](https://github.com/snobu/destreamer), if you find any issue please submit to him.
 
 
-### Little trick
-If you have to download lots of files, you can change destreamer.sh to keep working after crash without doing any action. Of course you have to manually stop it with ctrl+c, or it will run forever!
 
-```bash
-#!/usr/bin/env bash
-NODE_VERSION=$(node --version)
-
-if [[ $NODE_VERSION == "v8."* ]]; then
-    while true; do node build/src/destreamer.js "$@" && break; done
-else
-    node --max-http-header-size 32768 build/src/destreamer.js "$@"
-fi
-```
-
-In addiction i raccomend to use: 
-```bash
-./destreamer.sh -f list.txt -O ./desidered/folder --format mp4 --skip
-```
 
 <a href="https://github.com/snobu/destreamer/actions">
   <img src="https://github.com/snobu/destreamer/workflows/Node%20CI/badge.svg" alt="CI build status" />
