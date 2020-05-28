@@ -8,8 +8,40 @@ yourMagicPassword
 ***You are storing plaintext-credentials, therefore pay attention!***   
 You can find the original work [here](https://github.com/snobu/destreamer), if you find any issue please submit to him.
 
+### Little trick 
+If you have to download lots of files, you can create a python script to keep working after crash without doing any action. Of course you have to manually stop it with ctrl+z, or it will run forever!
 
+```python
+#!/usr/bin/env python3
 
+import os
+import sys
+
+string = ""
+filename = os.path.basename(__file__)
+for arg in sys.argv:
+	if (arg != "python" and arg!="python3" and arg!= "./"+filename and arg!= filename):
+		string+= (arg+" ")
+
+print('''\n\nRunning forever-plugin for destreamer! 
+I will keep working after crash!
+You are running with this arguments: {}
+
+Remember to close with ctrl+z, or i will run forever!\n\n'''.format(string))
+
+while True:
+	os.system("./destreamer.sh "+string)
+```
+Create a file.py with the name you want (suggested forever.py....) and run the script with the desidered arguments like the main program.
+
+In addiction i raccomend to use: 
+```bash
+./destreamer.sh -f list.txt -O ./desidered/folder --format mp4 --skip
+```
+or
+```bash
+python3 ./forever.py -f list.txt -O ./desidered/folder --format mp4 --skip
+```
 
 <a href="https://github.com/snobu/destreamer/actions">
   <img src="https://github.com/snobu/destreamer/workflows/Node%20CI/badge.svg" alt="CI build status" />
