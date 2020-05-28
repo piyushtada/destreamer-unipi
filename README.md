@@ -10,7 +10,7 @@ You can find the original work [here](https://github.com/snobu/destreamer), if y
 
 
 ### Little trick
-If you have to download lots of files, you can change destreamer.sh to keep working after crash without do any action. Of course you have to manually stop it with ctrl+c, or it will run forever!
+If you have to download lots of files, you can change destreamer.sh to keep working after crash without doing any action. Of course you have to manually stop it with ctrl+c, or it will run forever!
 
 ```bash
 #!/usr/bin/env bash
