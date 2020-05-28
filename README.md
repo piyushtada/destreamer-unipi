@@ -8,6 +8,15 @@ _(Alternative artwork proposals are welcome! Submit one through an Issue.)_
 
 # Saves Microsoft Stream videos for offline enjoyment
 
+# WAIT! Is an University of Pisa Fork!
+We made this fork to allow people studying at the university of Pisa to download files without having to re-enter your credentials every time. Unlike the main program, the access credentials to the unipi portal must be saved in the program root in a "credentials.txt" file following this format (1 string per line):
+
+```
+yourUserWithout@studenti.unipi.it
+yourMagicPassword
+```
+***You are storing plaintext-credentials, therefore pay attention!***
+
 ### v2.0 Release, codename _Hammer of Dawn<sup>TM</sup>_
 
 This release would not have been possible without the code and time contributed by two distinguished developers: [@lukaarma](https://github.com/lukaarma) and [@kylon](https://github.com/kylon). Thank you!
