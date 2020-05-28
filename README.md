@@ -9,8 +9,7 @@ _(Alternative artwork proposals are welcome! Submit one through an Issue.)_
 # Saves Microsoft Stream videos for offline enjoyment
 
 # WAIT! Is an University of Pisa Fork!
-We made this fork to allow people studying at the university of Pisa to download files without having to re-enter your credentials every time. Unlike the main program, the access credentials to the unipi portal must be saved in the program root in a "credentials.txt" file following this format (1 string per line):
-
+We made this fork to allow people studying at the university of Pisa to download files and permit students to enter their private university profile directly, without inserting their personal data every time. Unlike the main program, the access credentials to the unipi portal must be saved in the program root in a "credentials.txt" file following this format (1 string per line):
 ```
 yourUserWithout@studenti.unipi.it
 yourMagicPassword
@@ -64,11 +63,17 @@ Note that destreamer won't run in an elevated (Administrator/root) shell. Runnin
 To build destreamer clone this repository, install dependencies and run the build script -
 
 ```sh
-$ git clone https://github.com/snobu/destreamer
-$ cd destreamer
+$ git clone https://github.com/guray00/destreamer-unipi
+$ cd ./destreamer-unipi
 $ npm install
 $ npm run build
 ```
+Then create in the program root folder the credentials.txt file with at the first line the username and in the second one the password.
+```
+yourUserWithout@studenti.unipi.it
+yourMagicPassword
+```
+***You are storing plaintext-credentials, therefore pay attention!***
 
 ## Usage
 
