@@ -5,7 +5,7 @@ I made this fork to allow people studying at the university of Pisa to download 
 yourUserWithout@studenti.unipi.it
 yourMagicPassword
 ```
-***You are storing plaintext-credentials, therefore pay attention!*** _(i will fix that later, i promise...!)_ 	 
+***You are storing plaintext-credentials, therefore pay attention!*** _(i will fix that later, i promise...!)_					 
 You can find the original work [here](https://github.com/snobu/destreamer), if you find any issue please submit to him.
 
 ### Little trick 
