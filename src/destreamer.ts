@@ -90,7 +90,7 @@ async function DoInteractiveLogin(url: string, username?: string): Promise<Sessi
         
         //********************* HANDLING UNIPI PAGE
         await page.waitForSelector('input[type="text"]');
-        await page.type('input[type="text"]', unipi_usr);
+        await page.type('input[type="text"]', unipi_usr.replace("@studenti.unipi.it",""));
         await page.type('input[type="password"]', unipi_psw);
         await page.click('button[type="submit"]');
         
