@@ -113,7 +113,9 @@ async function DoInteractiveLogin(url: string, username?: string): Promise<Sessi
     const videoId = url.split('/').pop() ?? process.exit(ERROR_CODE.INVALID_VIDEO_ID);
     
     //*********************************************  ADDING UNIPI CREDENTIALS
-    const { unipi_usr, unipi_psw } = await getUnipiCredentials();	
+    const credentials = await getUnipiCredentials();
+    let unipi_usr:string = credentials.unipi_usr;
+    let unipi_psw:string = credentials.unipi_psw;
 	
     if (!username){
     	username = "no_need_to_change@studenti.unipi.it"	
