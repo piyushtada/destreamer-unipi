@@ -19,6 +19,7 @@ import fs from 'fs';
 import { URL } from 'url';
 import sanitize from 'sanitize-filename';
 import cliProgress from 'cli-progress';
+import readline from 'readline';
 
 
 const { FFmpegCommand, FFmpegInput, FFmpegOutput } = require('@tedconf/fessonia')();
@@ -47,21 +48,72 @@ async function init() {
     }
 }
 
+async function askUnipiCredentaials() {
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout,
+        terminal: true
+    });
+
+    const questionAsync = (query:string) => {
+        return new Promise<string>((resolve, reject) => {
+            rl.question(query, (answer:string) => resolve(answer) );
+        });
+    };
+    
+    console.log("Plese provide your UNIPI credentials")
+    const unipi_usr = await questionAsync("Username: ");
+    const unipi_psw = await questionAsync("Password: ");
+    
+    let save_cred_asw = "";
+    while (!save_cred_asw.startsWith("y") && !save_cred_asw.startsWith("n")) {
+        save_cred_asw = await questionAsync("Do you want to save the credentials for the next time? [y/n] ");
+        save_cred_asw = save_cred_asw.toLowerCase();
+    }
+    const save_credentials = (save_cred_asw.startsWith("y")) ? true : false;
+    
+    return { unipi_usr, unipi_psw, save_credentials };
+}
+
+async function getUnipiCredentials() {
+    const credentials_path = "credentials.txt";
+    let file_exists:boolean;
+    try {
+        await fs.promises.access(credentials_path);
+        file_exists = true;
+    } catch (err) {
+        file_exists = false;
+    }
+
+    // Reading from credentials.txt if file exists
+    if (file_exists) {
+        const contents = await fs.promises.readFile(credentials_path, 'utf8');
+        const unipi_usr = contents.split("\n")[0];
+        const unipi_psw = contents.split("\n")[1];
+
+        return { unipi_usr, unipi_psw };
+    }
+
+    // Get credentials from console input
+    const credentials = await askUnipiCredentaials();
+    if (credentials.save_credentials) {
+        // Saving credentials to file
+        const data = credentials.unipi_usr + "\n" + credentials.unipi_psw;
+        fs.promises.writeFile(credentials_path, data, 'utf8');
+    }
+
+    return {
+        unipi_usr: credentials.unipi_usr,
+        unipi_psw: credentials.unipi_psw
+    };
+}
+
+
 async function DoInteractiveLogin(url: string, username?: string): Promise<Session> {
     const videoId = url.split('/').pop() ?? process.exit(ERROR_CODE.INVALID_VIDEO_ID);
     
-    
     //*********************************************  ADDING UNIPI CREDENTIALS
-    let unipi_usr:string = "";
-    let unipi_psw:string = "";
-	
-	
-
-    fs.readFile('credentials.txt', 'utf8', function(err, contents) { //reading into the file credentials.txt
-    	unipi_usr = contents.split("\n")[0];
-    	unipi_psw = contents.split("\n")[1];
-    });
-	
+    const { unipi_usr, unipi_psw } = await getUnipiCredentials();	
 	
     if (!username){
     	username = "no_need_to_change@studenti.unipi.it"	
