@@ -125,7 +125,7 @@ async function DoInteractiveLogin(url: string, username?: string): Promise<Sessi
     console.log('Launching headless Chrome to perform the OpenID Connect dance...');
     const browser = await puppeteer.launch({
         executablePath: getPuppeteerChromiumPath(),
-        headless: false,
+        headless: true,	//unipi: no need to show the window now, software asks in the shell
         args: [
             '--disable-dev-shm-usage',
             '--fast-start',
