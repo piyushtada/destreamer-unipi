@@ -36,6 +36,7 @@
     "axios-retry": "^3.1.8",
     "cli-progress": "^3.7.0",
     "colors": "^1.4.0",
+    "ffmpeg": "0.0.4",
     "is-elevated": "^3.0.0",
     "iso8601-duration": "^1.2.0",
     "jwt-decode": "^2.2.0",
